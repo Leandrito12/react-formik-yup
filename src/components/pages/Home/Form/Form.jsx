@@ -42,7 +42,8 @@ export const Formulario = () => {
                     type='text'
                     onBlur={handleBlur}
                     variant={"filled"}
-                    error={(errors.nombre && touched.nombre) ? errors.nombre : null}
+                    error={!!(errors.nombre && touched.nombre)}
+                    helperText={errors.nombre}
                     success={values.apellido && !errors.apellido ? 'Válido' : ''} />
                 </Grid>
 
@@ -52,11 +53,11 @@ export const Formulario = () => {
                     name="apellido"
                     onChange={e => setFieldValue('apellido', e.target.value)}
                     label="Apellido"
-                    helperText=''
+                    helperText={errors.apellido}
                     type='text'
                     onBlur={handleBlur}
                     variant={"filled"}
-                    error={(errors.apellido && touched.apellido) ? errors.apellido : null}
+                    error={!!(errors.apellido && touched.apellido)}
                     success={values.apellido && !errors.apellido ? 'Válido' : ''} />
                 </Grid>
 
@@ -66,11 +67,11 @@ export const Formulario = () => {
                     name="email"
                     onChange={e => setFieldValue('email', e.target.value)}
                     label="email"
-                    helperText=''
+                    helperText={errors.email}
                     type='text'
                     onBlur={handleBlur}
                     variant={"filled"}
-                    error={(errors.email && touched.email) ? errors.email : null}
+                    error={!!(errors.email && touched.email)}
                     success={values.apellido && !errors.apellido ? 'Válido' : ''} />
                 </Grid>
 
@@ -80,24 +81,26 @@ export const Formulario = () => {
                     name="telefono"
                     onChange={e => setFieldValue('telefono', e.target.value)}
                     label="telefono"
-                    helperText=''
+                    helperText={errors.telefono}
                     type='text'
                     onBlur={handleBlur}
                     variant={"filled"}
-                    error={(errors.telefono && touched.telefono) ? errors.telefono : null}
+                    error={!!(errors.numero && touched.numero)}
                     success={values.apellido && !errors.apellido ? 'Válido' : ''} />
                 </Grid>
 
                 <Grid item xs={12} md={8}>
                   <div className="buttonForm">
                     <Button
-                      type='button'
-                      variant="primary"
-                      disabled={!(isValid && dirty)}
+                      type='submit'
+                      variant="contained"
+                      disabled={!isValid || !dirty}
                       size="large"
                       onClick={() => enviarForm(values)}
                     >
-                      {((isValid && dirty) ? "Enviar" : "Completar todos los campos")}
+                      {console.log(errors.nombre, errors.apellido, errors.email, errors.telefono)}
+                      {console.log(isValid, dirty)}
+                      {(!isValid && !dirty) ? "Completar todos los campos" : "Enviar"}
                     </Button>
                   </div>
                 </Grid>

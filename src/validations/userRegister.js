@@ -14,7 +14,7 @@ export const userSchema = Yup.object().shape({
     .email("debe ser un email valido")
     .required("Revisa el email ingresado"),
   telefono: Yup.string()
-    .min(6, "telefono invalido")
-    .max(6, "telefono invalido")
+    .min(6, "telefono invalido, deben ser 6 digitos")
+    .max(6, "telefono invalido, deben ser 6 digitos")
     .required("Revisa el telefono ingresado"),
 });
